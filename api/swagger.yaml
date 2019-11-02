@@ -1,0 +1,143 @@
+---
+swagger: "2.0"
+info:
+  description: "API specification document for Coinify"
+  version: "1.0.0"
+  title: "API Spec -  Dev Assignment"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    name: "Coinfy support"
+    url: "https://api.coinify.com"
+    email: "rakesh@coinify.com"
+  license:
+    name: "Coinify"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8080"
+basePath: "/"
+schemes:
+- "http"
+- "https"
+paths:
+  /currency:
+    get:
+      summary: "Retrieve all currencies"
+      description: "Retrieve all currencies"
+      operationId: "getCurrencies"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "A Currency details json object."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/currency"
+        405:
+          description: "Get currency details has failed"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Default"
+  /user:
+    get:
+      summary: "Retrieve user"
+      description: "Retrieve user"
+      operationId: "getUser"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "A user details json object."
+          schema:
+            $ref: "#/definitions/user"
+        405:
+          description: "Get currency details has failed"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Default"
+  /user/currency/withdraw/{amount}:
+    put:
+      summary: "Withdraw amount"
+      description: "withdraw amount"
+      operationId: "withdrawAmount"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "amount"
+        in: "path"
+        description: "amount to withdraw"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "A withdraw details json object."
+          schema:
+            $ref: "#/definitions/withdraw"
+        405:
+          description: "Get currency details has failed"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Default"
+definitions:
+  currency:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        description: "The currency ID."
+      type:
+        type: "string"
+        description: "The currency type name."
+      value:
+        type: "string"
+        description: "The currency value"
+      currencyCount:
+        type: "integer"
+        description: "how many are there in total"
+    example:
+      id: 0
+      type: "type"
+      value: "value"
+      currencyCount: 6
+  user:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        description: "The user ID"
+      name:
+        type: "string"
+        description: "The user name (No company name will be sent if the project is\
+          \ personal)"
+      balance:
+        type: "integer"
+        description: "user balance"
+    example:
+      balance: 6
+      name: "name"
+      id: 0
+  withdraw:
+    type: "object"
+    properties:
+      amount:
+        type: "array"
+        items:
+          $ref: "#/definitions/currency"
+    example:
+      amount:
+      - id: 0
+        type: "type"
+        value: "value"
+        currencyCount: 6
+      - id: 0
+        type: "type"
+        value: "value"
+        currencyCount: 6
+  Error:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+      message:
+        type: "string"
