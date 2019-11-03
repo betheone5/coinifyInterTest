@@ -1,7 +1,7 @@
 global.Sequelize = require('sequelize');
-global.sequelize = new Sequelize("ctest", "martiannetwork", "Azure7911?", {
+global.sequelize = new Sequelize("ctest", "martiannetwork@martiandb", "Azure7911?", {
   host: "martiandb.mysql.database.azure.com",
-  port: "3306",
+  //port: "3306",
 	//logging: false,
 	dialect: 'mysql',
 	pool: {
@@ -11,7 +11,16 @@ global.sequelize = new Sequelize("ctest", "martiannetwork", "Azure7911?", {
 	}
 });
 
+sequelize
+  .authenticate()
+  .then(function(err) {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(function (err) {
+    console.log('Unable to connect to the database:', err);
+  });
+
 // TABLES
 
 global.User = require('./user.js');
-global.currency = require('./currency.js');
+global.Currency = require('./currency.js');

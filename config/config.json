@@ -1,6 +1,6 @@
 {
     "development": {
-      "username": "martiannetwork",
+      "username": "martiannetwork@martiandb",
       "password": "Azure7911?",
       "database": "ctest",
       "host": "martiandb.mysql.database.azure.com",
