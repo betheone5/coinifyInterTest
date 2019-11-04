@@ -104,7 +104,8 @@ exports.withdrawAmount = function(amount) {
           console.log(amount);
           var newamount = uuser.balance - realAmount;
           console.log(newamount);
-          if (uuser) {
+          
+          if (newamount >= 0) {
               User.update(
                 { balance: newamount  },
                 { where:{ id: 1 }}                
@@ -116,16 +117,12 @@ exports.withdrawAmount = function(amount) {
                   console.log(error);
                 })
           } else {
-            resolve();
+            resolve("Do not have sufficient money");
           }
         } );
+        
         resolve(counts);
       }
-    //Substract the total amount from user balance
-    SubstractFromUserBalance();
-
-    //Also update the banks total supply and withdrawn
-    UpdateBankTotalSupply();
   });
 });
 }
@@ -156,53 +153,5 @@ function findLeast(amount) {
       }
       i++;
     });
-
-    // Print notes 
-    // console.log("Currency Count ->");
-    // var i = 0;
-    // counts.forEach(element => {
-    //   if (element != null) {
-    //     console.log(element.value +": "+ element.count);
-    //   }
-    //   i++
-    // });
-
-
-    // var notes = new Array(1000, 500, 200, 100, 50, 20, 10, 5, 2, 1);
-    // var noteCounter = Array(10).fill(0);
-  
-    // // count notes using Greedy approach
-    // var i = 0;
-    // notes.forEach(element => {
-    //   if (amount >= element) {
-    //     noteCounter[i] = Math.floor(amount / element);
-    //     console.log("\t"+noteCounter[i]);
-    //     amount = amount - noteCounter[i] * element;
-    //     console.log("\t"+amount);
-    //   }
-    //   i++;
-    // });
-  
-    // // Print notes 
-    // console.log("Currency Count ->");
-    // var i = 0;
-    // noteCounter.forEach(element => {
-    //   //console.log(element);
-    //   if (element != 0) {
-    //     console.log(notes[i] +": "+ element);
-    //   }
-    //   i++
-    // });
   });
-
-
-}
-
-
-function SubstractFromUserBalance(){
-  console.log("in SubstractFromUserBalance");
-}
-
-function UpdateBankTotalSupply(){
-  console.log("in UpdateBankTotalSupply");
 }
