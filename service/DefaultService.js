@@ -90,7 +90,7 @@ exports.withdrawAmount = function(amount) {
           //console.log("\t"+noteCounter[i]);
           let item = {};
           item["count"] = noteCounter[i];
-          item["id"] = element.id;
+          item["type"] = element.type;
           item["value"] = element.value;
           counts.push(item);
           amount = amount - noteCounter[i] * element.value;

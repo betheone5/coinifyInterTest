@@ -57,7 +57,7 @@ paths:
             $ref: "#/definitions/Error"
       x-swagger-router-controller: "Default"
   /user/currency/withdraw/{amount}:
-    put:
+    post:
       summary: "Withdraw amount"
       description: "withdraw amount"
       operationId: "withdrawAmount"
