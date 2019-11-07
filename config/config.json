@@ -1,1 +1,27 @@
 
+{	
+    "development": {	
+      "username": "martiannetwork@martiandb",	
+      "password": "Azure7911?",	
+      "database": "ctest",	
+      "host": "martiandb.mysql.database.azure.com",	
+      "port": "3306",	
+      "dialect": "mysql"	
+    },	
+    "test": {	
+      "username": "martiannetwork",	
+      "password": "Azure7911?",	
+      "database": "martiandb",	
+      "host": "martiandb.mysql.database.azure.com",	
+      "port": "3306",	
+      "dialect": "mysql"	
+    },	
+    "production": {	
+      "username": "martiannetwork",	
+      "password": "Azure7911?",	
+      "database": "martiandb",	
+      "host": "martiandb.mysql.database.azure.com",	
+      "port": "3306",	
+      "dialect": "mysql"	
+    }	
+  }
